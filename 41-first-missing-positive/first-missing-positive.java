@@ -8,6 +8,10 @@ class Solution {
             {
                 t++;
             }
+            else if(n>t)
+            {
+                return t;
+            }
         }
         return t;
     }
