@@ -20,12 +20,12 @@ class Solution {
             right--;
 
             // Right → Left
-            if (top <= bottom) {
+            if(top<=bottom)
+            {
                 for (int i = right; i >= left; i--)
                     ans.add(matrix[bottom][i]);
                 bottom--;
             }
-
             // Bottom → Top
             if (left <= right) {
                 for (int i = bottom; i >= top; i--)
