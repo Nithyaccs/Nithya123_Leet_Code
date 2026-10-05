@@ -1,25 +1,38 @@
+import java.util.HashMap;
+
 class Solution {
     public boolean wordPattern(String pattern, String s) {
-        String[] words = s.split(" ");
-        
-        if (pattern.length() != words.length) {
-            return false;}
 
-        HashMap<Character, String> charToWord = new HashMap<>();
-        HashSet<String> seenWords = new HashSet<>();
+        char a[] = pattern.toCharArray();
+        String b[] = s.split(" ");
 
-        for (int i = 0; i < pattern.length(); i++) {
-            char c = pattern.charAt(i);
-            String w = words[i];
+        // Lengths must be equal
+        if (a.length != b.length) {
+            return false;
+        }
 
-            if (charToWord.containsKey(c)) {
-                if (!charToWord.get(c).equals(w)) {
-                    return false;}
-            } else {
-                if (seenWords.contains(w)) {
-                    return false;}
-                charToWord.put(c, w);
-                seenWords.add(w);}}
+        HashMap<Character, String> c = new HashMap<>();
+        HashMap<String, Character> d = new HashMap<>();
+
+        for (int i = 0; i < a.length; i++) {
+
+            char ch = a[i];
+            String word = b[i];
+
+            // Check character -> word
+            if (c.containsKey(ch) && !c.get(ch).equals(word)) {
+                return false;
+            }
+
+            // Check word -> character
+            if (d.containsKey(word) && d.get(word) != ch) {
+                return false;
+            }
+
+            c.put(ch, word);
+            d.put(word, ch);
+        }
+
         return true;
     }
 }
