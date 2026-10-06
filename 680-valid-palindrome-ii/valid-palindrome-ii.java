@@ -1,20 +1,24 @@
 class Solution {
     public boolean validPalindrome(String s) {
-        int i = 0, j = s.length() - 1;
+        int i=0 ;
+        int j = s.length() -1;
 
-        while (i < j) {
-            if (s.charAt(i) != s.charAt(j)) {
-                int a = i + 1, b = j, c = i, d = j - 1;
-
-                while (a < b && s.charAt(a) == s.charAt(b)) { a++; b--; }
-                if (a >= b) return true;
-
-                while (c < d && s.charAt(c) == s.charAt(d)) { c++; d--; }
-                return c >= d;
+        while(i<j)
+        {
+            if(s.charAt(i)!=s.charAt(j)){
+                return check(s,i+1,j) || check(s,i,j-1);
             }
             i++;
             j--;
         }
         return true;
+}
+    private boolean check(String s,int i,int j){
+        while(i<j){
+        if(s.charAt(i) != s.charAt(j)) return false;
+        i++;
+        j--;
+        }
+    return true;
     }
 }
